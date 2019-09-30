@@ -1,5 +1,5 @@
-const forecast = require('./callback')
+const request = require('request')
 
-forecast(42.3605, -71.1596, (error, {summary,temperature}) => {
-    console.log(sumary)
+request({url : 'https://api.darksky.net/forecast/5e5640b7b3f403f5cfe614e506e974d4/20,20', json:true}, (error, response) => {
+    console.log(response.body.daily.data[0])
 })

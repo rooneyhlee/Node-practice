@@ -13,7 +13,9 @@ const forecast = (latitude, longitude, callback) => {
             else {
                 callback(undefined, {
                     summary: body.currently.summary,
-                    temperature: body.currently.temperature
+                    temperature: body.currently.temperature,
+                    high: body.daily.data[0].temperatureHigh,
+                    low: body.daily.data[0].temperatureLow
                 })
                 
             }

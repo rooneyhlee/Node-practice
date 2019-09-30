@@ -52,16 +52,19 @@ app.get('/weather', (req,res) =>{
             error:'you must provide a search term'
         })
     }
-    geocode(req.query.address, (error, {latitude, longitude}) => {
+    geocode(req.query.address, (error, {latitude, longitude, location}) => {
         if (!error){
             console.log(latitude,longitude)
-            forecast(latitude, longitude, (error,{summary,temperature})=>{
+            forecast(latitude, longitude, (error,{summary,temperature,high,low})=>{
                 res.send({
                     latitude: latitude,
                     longitude: longitude,
                     address: req.query.address,
                     summary: summary,
-                    temperature: temperature
+                    temperature: temperature,
+                    location: location,
+                    high,
+                    low
             })
         
             })}

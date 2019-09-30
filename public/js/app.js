@@ -12,16 +12,21 @@ const messageTwo = document.querySelector('#message-2')
 messageOne.textContent = ''
 weatherform.addEventListener('submit', (e) => {
     e.preventDefault()
-    const location = search.value
+    const query = search.value
     messageOne.textContent = 'Loading...'
     messageTwo.textContent = ""
-    fetch('/weather?address='+ location).then((response) => {
+    fetch('/weather?address='+ query).then((response) => {
     response.json().then((data)=>{
         console.log(data)
-        print1 = data.address + " is like "+  data.summary 
+        print1 = data.address + " is "+  data.summary 
+        if (!data) {
         messageOne.textContent = print1
-        messageTwo.textContent = data.temperature + " F and at" + data.latitude
-
+        messageTwo.textContent = data.temperature + " F and at " + data.latitude + "\n" + "The high temperature is " +  data.high + " and low temperature is " + data.low 
+    }
+    else {
+        messageOne.textContent = "error"
+        messageTwo.textContent = ""
+    }
     })
 })
 })
