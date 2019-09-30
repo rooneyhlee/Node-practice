@@ -6,6 +6,8 @@ const forecast = require('./utils/callback')
 
 // define path for express config
 const app = express()
+
+const port = process.env.PORT || 3000
 const publicDirectory = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, "../template/views")
 const partialsPath = path.join(__dirname, '../template/partials')
@@ -99,7 +101,7 @@ app.get('*', (req, res) =>{
 })
 
 
-app.listen(3000,()=>{
+app.listen(port,()=>{
     console.log('running')
 }
 )
